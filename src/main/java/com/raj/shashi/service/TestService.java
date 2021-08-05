@@ -24,7 +24,7 @@ public class TestService {
     }
 
     public User createUser(User user){
-        user.setId(String.valueOf(new Random().nextInt(1000)));
+        beforeCreate(user);
         afterCreate(user);
         return dbHelper.create(user);
     }
@@ -45,6 +45,10 @@ public class TestService {
         });
 
         return list;
+    }
+
+    private void beforeCreate(User user){
+        user.setId(String.valueOf(new Random().nextInt(1000)));
     }
 
     private void afterCreate(User  user){
